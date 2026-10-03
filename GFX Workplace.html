@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>GFX Workplace</title>
+<style>
+:root{--b:#2563eb;--b2:#1d4ed8;--bl:#eff6ff;--ink:#0f172a;--mu:#64748b;--ln:#e2e8f0;--bg:#f8fafc;--cd:#fff;--ok:#16a34a;--no:#dc2626;--am:#d97706;--pu:#7c3aed;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0)}
+*,*::before,*::after{box-sizing:inherit}
+html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+button,input,select,textarea{font:inherit;color:inherit}
+.i{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--cd);border-bottom:1px solid var(--ln)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
+.logo{width:32px;height:32px;border-radius:10px;background:var(--b);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px}
+.pa{width:38px;height:38px;border-radius:50%;border:2px solid var(--ln);background:var(--bl);color:var(--b);display:grid;place-items:center;font-weight:700;overflow:hidden;padding:0;cursor:pointer}
+.pa img{width:100%;height:100%;object-fit:cover}
+main{max-width:620px;margin:0 auto;padding:16px 16px 120px}
+h1{font-size:28px;line-height:1.15;margin:8px 0 4px;letter-spacing:-.02em}
+h2{font-size:16px;margin:0 0 12px}
+.sub{color:var(--mu);margin:0 0 16px;font-size:15px}
+.card{background:var(--cd);border:1px solid var(--ln);border-radius:16px;padding:16px;margin-bottom:14px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:14px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1px solid var(--ln);background:var(--cd);border-radius:99px;padding:8px 16px;font-size:14px;font-weight:600;color:var(--mu);cursor:pointer}
+.chip.on{background:var(--b);border-color:var(--b);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:13px 22px;background:var(--b);color:#fff;font-weight:700;cursor:pointer;text-decoration:none}
+.btn:active{background:var(--b2);transform:scale(.97)}
+.btn.w{width:100%}
+.btn.s{padding:8px 14px;font-size:14px;border-radius:10px}
+.btn.o{background:var(--cd);color:var(--b);border:1.5px solid #bfdbfe}
+.btn.o:active{background:var(--bl)}
+.btn.r{background:#fef2f2;color:var(--no);border:1.5px solid #fecaca}
+.stat{display:flex;flex-direction:column;gap:6px}
+.stat span{color:var(--mu);font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.stat b{font-size:22px}
+.dot{width:30px;height:30px;border-radius:9px;display:grid;place-items:center}
+.dot .i{width:16px;height:16px}
+label{display:block;font-size:14px;font-weight:600;margin:12px 0 6px}
+input,select,textarea{width:100%;border:1.5px solid var(--ln);border-radius:12px;padding:11px 13px;background:var(--cd)}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--b)}
+textarea{resize:vertical;min-height:90px}
+.empty{text-align:center;padding:48px 12px;color:var(--mu)}
+.eic{width:56px;height:56px;border-radius:16px;background:var(--bl);color:var(--b);display:grid;place-items:center;margin:0 auto 14px}
+.empty b{display:block;color:var(--ink);font-size:18px;margin-bottom:4px}
+.empty .btn{margin-top:16px}
+.th{display:flex;gap:10px;flex-wrap:wrap}
+.th img,.up{width:92px;height:92px;border-radius:12px;object-fit:cover}
+.up{border:1.5px dashed #93c5fd;background:var(--bl);color:var(--b);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:12px;font-weight:600;cursor:pointer}
+.pg{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pg div{position:relative}
+.pg img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}
+.order{content-visibility:auto;contain-intrinsic-size:auto 150px}
+.top{display:flex;justify-content:space-between;gap:10px}
+.tag{display:inline-block;font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px;background:#f1f5f9;color:var(--mu)}
+.bar{height:8px;border-radius:9px;background:#e2e8f0;overflow:hidden;margin:12px 0 6px}
+.bar i{display:block;height:100%;background:var(--ok)}
+.mu{color:var(--mu);font-size:13px}
+.acts{display:flex;gap:8px;margin-top:12px;align-items:center}
+.acts select{width:auto;flex:1;padding:8px 10px;font-size:14px}
+.hero{display:flex;gap:14px;align-items:center}
+.big{width:72px;height:72px;border-radius:50%;background:var(--bl);color:var(--b);display:grid;place-items:center;font-size:26px;font-weight:800;overflow:hidden;flex:none}
+.big img{width:100%;height:100%;object-fit:cover}
+.row{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--ln);cursor:pointer}
+.row:first-of-type{border-top:0}
+.cp{display:flex;gap:8px}
+.cp .btn{padding:0 14px}
+.back{display:inline-flex;align-items:center;gap:4px;color:var(--mu);background:none;border:0;padding:0;font-weight:600;cursor:pointer}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:flex-end;justify-content:space-around;background:var(--cd);border-top:1px solid var(--ln);padding:6px 0 calc(6px + env(safe-area-inset-bottom,0))}
+nav a{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--mu);font-size:12px;font-weight:600;text-decoration:none;padding:4px 0}
+nav a.on{color:var(--b)}
+nav a span{width:50px;height:28px;border-radius:99px;display:grid;place-items:center}
+nav a.on span{background:var(--bl)}
+.fab{width:60px;height:60px;border-radius:50%;border:4px solid var(--cd);background:var(--b);color:#fff;display:grid;place-items:center;margin-top:-28px;cursor:pointer;padding:0;box-shadow:0 6px 14px rgba(37,99,235,.35)}
+.fab:active{transform:scale(.94)}
+.fab .i{width:28px;height:28px;stroke-width:2.6}
+.tw{position:relative;width:92px;height:92px}
+.tw img{width:100%;height:100%;object-fit:cover;border-radius:12px;display:block}
+.tw button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(15,23,42,.7);color:#fff;display:grid;place-items:center;padding:0;cursor:pointer}
+.tw button .i{width:14px;height:14px}
+button.up{font:inherit;padding:0}
+.mb.bt{place-items:end center;padding:0}
+.md.sh{border-radius:20px 20px 0 0;max-width:none;width:100%;padding:18px 16px calc(16px + env(safe-area-inset-bottom,0))}
+.opt{display:flex;gap:12px;align-items:center;width:100%;padding:14px;border:1px solid var(--ln);background:var(--cd);border-radius:14px;margin-bottom:10px;font-weight:600;cursor:pointer;color:var(--ink)}
+.opt:active{background:var(--bl)}
+canvas.cr{display:block;width:100%;max-width:300px;aspect-ratio:1;border-radius:50%;touch-action:none;margin:0 auto 14px;background:#e2e8f0}
+.md input[type=range]{padding:0;border:0;margin-bottom:14px}
+.md .acts .btn{flex:1}
+.pg img{cursor:pointer}
+.opt{position:relative;overflow:hidden}
+.opt .ovl{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;padding:0;border:0;font-size:0}
+body.bare header,body.bare nav{display:none}
+.wl{text-align:center;padding-top:18px}.wl label{text-align:left}.wl input{text-align:left}
+.big2{width:64px;height:64px;font-size:28px;border-radius:20px;margin:0 auto 14px}
+.avwrap{position:relative;width:96px;margin:6px auto 14px}
+.avwrap .big{margin:0;width:96px;height:96px;font-size:36px}
+.badge{position:absolute;right:-2px;bottom:-2px;width:34px;height:34px;border-radius:50%;border:3px solid var(--cd);background:var(--b);color:#fff;display:grid;place-items:center;padding:0;cursor:pointer}
+.badge .i{width:16px;height:16px}
+.sw{display:flex;gap:10px;justify-content:center;margin-bottom:10px}
+.swb{width:28px;height:28px;border-radius:50%;border:3px solid var(--cd);box-shadow:0 0 0 1.5px var(--ln);padding:0;cursor:pointer}
+.swb.on{box-shadow:0 0 0 2.5px var(--ink)}
+.pc{text-align:center}.pc p{margin:8px 0 12px;color:var(--mu)}
+.sec{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin:20px 4px 8px}
+.lst{padding:2px 16px}
+.lr{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid var(--ln);cursor:pointer;text-decoration:none;color:inherit}
+.lst .lr:first-child{border-top:0}.lr>div{flex:1}
+.lic{width:36px;height:36px;border-radius:11px;background:var(--bl);color:var(--b);display:grid;place-items:center;font-style:normal}
+.chev{color:var(--mu);font-size:22px}
+.lk{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--ln)}
+.lk:first-child{border-top:0}.lk .mu{word-break:break-all}
+.dots{display:flex;gap:14px;justify-content:center;margin:18px 0}.dots i{width:14px;height:14px;border-radius:50%;border:2px solid var(--b)}.dots i.on{background:var(--b)}
+.kp{display:grid;grid-template-columns:repeat(3,76px);gap:14px;justify-content:center}.kp button{height:64px;border-radius:50%;border:1px solid var(--ln);background:var(--cd);font-size:24px;font-weight:600;cursor:pointer;color:var(--ink)}.kp button:active{background:var(--bl)}
+.doc h2{margin:18px 0 6px}.doc p{margin:0 0 8px;color:var(--mu);font-size:15px}
+.mrow{display:grid;grid-template-columns:1fr 92px auto;gap:8px;margin-bottom:8px}
+.qrow{border-top:1px solid var(--ln);padding:12px 0}.qrow>input,.qrow .g2{margin-bottom:8px}
+.chk{display:flex;align-items:center;gap:8px;margin:0;font-weight:500}.chk input{width:auto}
+.pv{width:100%;height:calc(100vh - 230px);min-height:420px;border:1px solid var(--ln);border-radius:14px;background:#fff}
+.chip .i{width:14px;height:14px;vertical-align:-2px}
+.rules{text-align:left;margin-top:26px;padding:16px;border:1px solid var(--ln);border-radius:14px;background:var(--cd);font-size:14px;color:var(--mu)}
+.rules b{color:var(--ink)}.rules ul{margin:8px 0 0;padding-left:18px}.rules li{margin-bottom:4px}
+.terms{font-size:13px;color:var(--mu);margin:14px 0 0}.terms a{color:var(--b);font-weight:600;text-decoration:none}
+.note{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px;color:#92400e;text-align:left}
+.note .btn{margin-top:8px}
+.item2{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0}.item2+.item2{border-top:1px solid var(--ln)}.item2>div:first-child{flex:1;min-width:0}
+.avwrap{width:112px;height:112px}
+.ring{width:112px;height:112px;padding:4px;border-radius:50%;background:conic-gradient(from 210deg,var(--c),color-mix(in srgb,var(--c) 40%,#fff),var(--c));box-shadow:0 8px 20px -8px var(--c)}
+.avwrap .big{width:100%;height:100%;margin:0;font-size:42px;border:4px solid var(--cd);background:color-mix(in srgb,var(--c) 14%,var(--cd));color:var(--c)}
+.ring .big{--c:inherit}
+.avwrap .badge{right:2px;bottom:2px}
+.sw{gap:12px;flex-wrap:wrap}
+.swb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:3px solid var(--cd);background:var(--c);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 30%,transparent);transition:transform .12s,box-shadow .12s}
+.swb.on{box-shadow:0 0 0 3px var(--c);transform:scale(1.1)}
+.swb.on::after{content:'✓';color:#fff;font-weight:800;font-size:16px;line-height:1}
+.pw{position:relative}.pw input{padding-right:48px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mu);padding:8px;cursor:pointer;display:grid;place-items:center}
+details{border-top:1px solid var(--ln);padding:12px 0}details:first-child{border-top:0}
+summary{font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px}
+summary::after{content:'+';color:var(--b);font-size:20px;line-height:1}details[open] summary::after{content:'\2212'}
+summary::-webkit-details-marker{display:none}details p{margin:10px 0 0;color:var(--mu);font-size:15px}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+label.btn,label.up{position:relative;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(16px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:14px;opacity:0;pointer-events:none;z-index:20;max-width:90%;text-align:center;transition:opacity .2s,transform .2s}
+#toast.on{opacity:1;transform:translateX(-50%)}
+.mb{position:fixed;inset:0;background:rgba(15,23,42,.5);display:grid;place-items:center;z-index:30;padding:20px}
+.md{background:var(--cd);border-radius:16px;padding:20px;width:100%;max-width:340px}
+.md p{margin:0 0 12px;font-weight:600}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b1120;--cd:#131c31;--ink:#f1f5f9;--mu:#94a3b8;--ln:#26334d;--bl:#172554}:root:not([data-theme=light]) .chip.on,:root:not([data-theme=light]) .btn{color:#fff}:root:not([data-theme=light]) .tag{background:#1e293b}:root:not([data-theme=light]) .bar{background:#26334d}:root:not([data-theme=light]) .btn.o{border-color:#1e3a8a}:root:not([data-theme=light]) .btn.r{background:#2a1517;border-color:#5b2226}}
+:root[data-theme=dark]{--bg:#0b1120;--cd:#131c31;--ink:#f1f5f9;--mu:#94a3b8;--ln:#26334d;--bl:#172554}:root[data-theme=dark] .chip.on,:root[data-theme=dark] .btn{color:#fff}:root[data-theme=dark] .tag{background:#1e293b}:root[data-theme=dark] .bar{background:#26334d}:root[data-theme=dark] .btn.o{border-color:#1e3a8a}:root[data-theme=dark] .btn.r{background:#2a1517;border-color:#5b2226}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></symbol>
+<symbol id="i-list" viewBox="0 0 24 24"><path d="M4 7l2 2 3-3M4 17l2 2 3-3M13 7h7M13 17h7"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-img" viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 16l5-5 4 4 3-3 4 4"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 3.6-7 8-7s8 3 8 7"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></symbol>
+<symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><path d="M9 9h11v11H9zM5 15V4h11"/></symbol>
+<symbol id="i-out" viewBox="0 0 24 24"><path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/></symbol>
+<symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h4l2-3h4l2 3h4v12H4zM12 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></symbol>
+<symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v9H6zM8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9M15 5v4M9 15v4"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h8l4 4v14H7zM15 3v4h4M10 12h6M10 16h6"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 .9-1 1.7M12 17h.01"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5M4 20h16"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12zM12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-up2" viewBox="0 0 24 24"><path d="M4 16l6-6 4 4 6-8"/></symbol>
+<symbol id="i-dn" viewBox="0 0 24 24"><path d="M4 8l6 6 4-4 6 8"/></symbol>
+<symbol id="i-clk" viewBox="0 0 24 24"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM12 7v5l3 2"/></symbol>
+<symbol id="i-wal" viewBox="0 0 24 24"><path d="M4 7h14a2 2 0 0 1 2 2v9H4zM4 7l12-3v3M16 13h2"/></symbol>
+</svg>
+<header><div class="brand"><div class="logo">G</div>GFX Workplace</div></header>
+<main id="v"></main>
+<nav>
+<a href="#home" data-t="home" data-a="go" data-v="home"><span><svg class="i"><use href="#i-home"/></svg></span>Home</a>
+<a href="#queue" data-t="queue" data-a="go" data-v="queue"><span><svg class="i"><use href="#i-list"/></svg></span>Queue</a>
+<button class="fab" data-a="fab" aria-label="Add"><svg class="i"><use href="#i-plus"/></svg></button>
+<a href="#portfolio" data-t="portfolio" data-a="go" data-v="portfolio"><span><svg class="i"><use href="#i-img"/></svg></span>Portfolio</a>
+<a href="#profile" data-t="profile" data-a="go" data-v="profile"><span><svg class="i"><use href="#i-user"/></svg></span>Profile</a>
+</nav>
+<script>
+'use strict';
+const OPEN_URL='https://claude.ai/artifact/CzqXwb2EnYZTYEpNseT1nn',WV=/; wv\)/.test(navigator.userAgent);
+const $=s=>document.querySelector(s);
+const ic=n=>`<svg class="i"><use href="#i-${n}"/></svg>`;
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MEM={};let tt;
+const ld=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));if(v!=null)return v}catch(e){}return k in MEM?MEM[k]:d};
+const sv=(k,v)=>{MEM[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast('Saved for this session only. Open the file in your browser to keep your data.')}return true};
+function toast(m){let e=$('#toast');if(!e){e=document.createElement('div');e.id='toast';document.body.appendChild(e)}e.textContent=m;e.className='on';clearTimeout(tt);tt=setTimeout(()=>{e.className=''},2800)}
+function modal(h,fn,fn2){const m=document.createElement('div');m.className='mb';m.innerHTML='<div class="md">'+h+'</div>';m.onclick=e=>{const b=e.target.closest('[data-m]');if(!b&&e.target!==m)return;const y=b&&b.dataset.m==='y',v=m.querySelector('#mv');const val=v?v.value:'',gs=m.querySelector('#mg'),gv=gs?gs.value:undefined,nt=m.querySelector('#mn'),nv=nt?nt.value:'';m.remove();if(y)fn(val,gv,nv);else if(b&&b.dataset.m==='d'&&fn2)fn2()};document.body.appendChild(m);const i=m.querySelector('#mv');if(i)setTimeout(()=>i.focus(),50)}
+function ask(msg,fn,label){modal('<p>'+esc(msg)+'</p><div class="acts"><button class="btn o" data-m="x">Cancel</button><button class="btn r" data-m="y">'+(label||'Delete')+'</button></div>',fn)}
+function askVal(msg,fn){modal('<p>'+esc(msg)+'</p><input id="mv" type="number" inputmode="decimal" step="0.01"><div class="acts"><button class="btn o" data-m="x">Cancel</button><button class="btn" data-m="y">Add</button></div>',fn)}
+const ST=['Pending','In Progress','Revision','Completed'];
+const SC={Pending:'#d97706','In Progress':'#2563eb',Revision:'#7c3aed',Completed:'#16a34a'};
+const SYM={PHP:'₱',USD:'$',EUR:'€',GBP:'£'};
+let P=ld('g2_profile',null),C=ld('g2_com',[]),G=ld('g2_port',[]),X=ld('g2_exp',[]);
+G=G.map(x=>typeof x==='string'?{src:x,th:x,title:''}:x);
+let U={grp:'All',range:'30',filter:'All',from:'',to:''},D={ref:[],fin:[]},PF={};
+const cur=()=>(P&&P.cur)||'PHP';
+const $$=n=>(SYM[cur()]||'')+Number(n||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const num=v=>parseFloat(v)||0;
+
+async function loadImg(f){if(window.createImageBitmap){try{return await createImageBitmap(f)}catch(e){}}return await new Promise((ok,no)=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{URL.revokeObjectURL(u);ok(i)};i.onerror=no;i.src=u})}
+async function shrink(f,max,q){const b=await loadImg(f),r=Math.min(1,(max||900)/Math.max(b.width,b.height)),c=document.createElement('canvas');c.width=Math.round(b.width*r);c.height=Math.round(b.height*r);const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(b,0,0,c.width,c.height);if(b.close)b.close();return c.toDataURL('image/jpeg',q||.72)}
+
+function avatar(){const o=P||PF;return o.avatar?`<img src="${o.avatar}" alt="">`:esc(((o.name||'G').trim()[0]||'G').toUpperCase())}
+
+function home(){
+ let a=0,z=Infinity;const now=Date.now();
+ if(U.range==='custom'){a=U.from?new Date(U.from).getTime():0;z=U.to?new Date(U.to).getTime()+864e5:Infinity}
+ else if(U.range!=='all')a=now-(+U.range)*864e5;
+ const inX=X.filter(e=>e.at>=a&&e.at<z),rev=C.filter(c=>c.at>=a&&c.at<z).reduce((s,c)=>s+num(c.paid),0)+inX.filter(e=>e.type==='in').reduce((s,e)=>s+num(e.amt),0),sp=inX.filter(e=>e.type!=='in').reduce((s,e)=>s+num(e.amt),0);
+ const pend=C.filter(c=>c.status!=='Completed').reduce((s,c)=>s+Math.max(0,num(c.price)-num(c.paid)),0);
+ const R=[['7','7 Days'],['30','30 Days'],['90','3 Months'],['365','1 Year'],['custom','Custom']];
+ const st=(l,v,i,bg,col)=>`<div class="card stat" style="margin:0"><span>${l}<i class="dot" style="background:${bg};color:${col}">${ic(i)}</i></span><b>${$$(v)}</b></div>`;
+ const mx=Math.max(rev,sp,1);
+ const ent=X.map((e,i)=>({e,i})).filter(o=>o.e.at>=a&&o.e.at<z).sort((p,q)=>q.e.at-p.e.at).slice(0,8);
+ const act=ent.length?`<div class="card"><h2>Recent entries</h2>${ent.map(o=>`<div class="item2"><div><b>${esc(o.e.note||(o.e.type==='in'?'Income':'Spending'))}</b><div class="mu">${new Date(o.e.at).toLocaleDateString()}</div></div><b style="color:${o.e.type==='in'?'var(--ok)':'var(--no)'}">${o.e.type==='in'?'+':'-'}${$$(o.e.amt)}</b><button class="btn r s" data-a="delx" data-i="${o.i}" aria-label="Delete entry">${ic('trash')}</button></div>`).join('')}</div>`:'';
+ const hi=P&&P.name?`Hi, ${esc(P.name.split(' ')[0])}`:'Dashboard';
+ return `<h1>${hi}</h1><p class="sub">Track your revenue, spending, and active commissions.</p>
+ ${P?'':`<div class="card" style="background:var(--bl);border-color:#bfdbfe"><b>Create your profile</b><p class="sub" style="margin:4px 0 12px">Add your name and studio so clients see who they're ordering from.</p><button class="btn s" data-a="prof">Create profile</button></div>`}
+ <div class="chips">${R.map(r=>`<button class="chip ${U.range===r[0]?'on':''}" data-a="range" data-v="${r[0]}">${r[1]}</button>`).join('')}</div>
+ ${U.range==='custom'?`<div class="g2" style="margin-bottom:14px"><input type="date" data-r="from" value="${U.from}"><input type="date" data-r="to" value="${U.to}"></div>`:''}
+ <div class="g2" style="margin-bottom:14px">${st('Revenue',rev,'up2','#dcfce7','#16a34a')}${st('Spending',sp,'dn','#fee2e2','#dc2626')}${st('Profit',rev-sp,'wal','#dcfce7','#16a34a')}${st('Pending value',pend,'clk','#fef3c7','#d97706')}</div>
+ <div class="g2" style="margin-bottom:14px"><button class="btn" data-a="addin">${ic('plus')}Add income</button><button class="btn o" data-a="addout">${ic('plus')}Add spending</button></div>
+ <div class="card"><h2>Revenue vs spending</h2>
+ ${rev||sp?`<div style="margin-top:14px"><div class="mu">Revenue</div><div class="bar"><i style="width:${rev/mx*100}%"></i></div><div class="mu">Spending</div><div class="bar"><i style="width:${sp/mx*100}%;background:var(--no)"></i></div></div>`:`<div class="empty" style="padding:36px 0 12px">No revenue or spending in this period yet.</div>`}</div>${act}`;
+}
+
+function dueTxt(d){if(!d)return '';const n=Math.ceil((new Date(d)-new Date().setHours(0,0,0,0))/864e5);return n<0?`<span style="color:var(--no)">overdue ${-n}d</span>`:n===0?'due today':`due in ${n}d`}
+function queue(){
+ const F=['All',...ST];
+ const L=C.filter(c=>U.filter==='All'||c.status===U.filter).sort((a,b)=>(a.deadline||'9').localeCompare(b.deadline||'9'));
+ return `<h1>Order queue</h1><p class="sub">Sorted by deadline. Move commissions forward and mark payments.</p>
+ <div class="chips">${F.map(f=>`<button class="chip ${U.filter===f?'on':''}" data-a="filter" data-v="${f}">${f}</button>`).join('')}</div>
+ ${L.length?L.map(c=>{const pc=num(c.price)?Math.min(100,num(c.paid)/num(c.price)*100):0;return `<div class="card order"><div class="top"><div><b>${esc(c.name)}</b><div class="mu">${esc(c.type||'No type')}${c.deadline?' · '+dueTxt(c.deadline):''}</div></div><div style="text-align:right"><b>${$$(c.price)}</b><div class="mu">paid ${$$(c.paid)}</div></div></div>
+ <div class="bar"><i style="width:${pc}%"></i></div>
+ <div class="top"><span class="tag" style="color:${SC[c.status]}">${c.status}</span><span class="mu">${pc>=100?'Paid in full':Math.round(pc)+'% paid'}</span></div>
+ <div class="acts"><select data-a="status" data-id="${c.id}" aria-label="Status">${ST.map(s=>`<option ${s===c.status?'selected':''}>${s}</option>`).join('')}</select>
+ ${pc<100&&num(c.price)?`<button class="btn s" data-a="paid" data-id="${c.id}">${ic('check')}Mark paid</button>`:''}
+ <button class="btn r s" data-a="del" data-id="${c.id}" aria-label="Delete">${ic('trash')}</button></div></div>`}).join('')
+ :`<div class="empty"><div class="eic">${ic('list')}</div><b>No commissions yet</b>Add your first commission to start tracking your queue.<br><button class="btn" data-a="new">New commission</button></div>`}`;
+}
+
+const thumbs=k=>D[k].map((o,i)=>`<div class="tw"><img src="${o.th||o.src||o}" alt=""><button data-a="rmd" data-k="${k}" data-i="${i}" aria-label="Remove photo">${ic('x')}</button></div>`).join('')+`<button class="up" data-a="addphoto" data-k="${k}">${ic('cam')}Add photo</button>`;
+function newc(){
+ const f=(k,l,ph,t='text')=>`<label>${l}</label><input type="${t}" data-d="${k}" placeholder="${ph}" value="${esc(D[k])}">`;
+ return `<button class="back" data-a="queue">${ic('back')}Back</button><h1>New commission</h1>
+ <div class="card"><h2>Client &amp; details</h2>${f('name','Client name *','Client name')}${f('contact','Client contact','Email or handle')}${f('type','Commission type','e.g. Full body, Chibi, Logo')}
+ <div class="g2"><div>${f('price','Price ('+cur()+')','0.00','number')}</div><div>${f('paid','Amount paid ('+cur()+')','0.00','number')}</div></div>${f('deadline','Deadline','','date')}
+ <div class="g2"><div><label>Status</label><select data-d="status">${ST.map(s=>`<option ${s===(D.status||'Pending')?'selected':''}>${s}</option>`).join('')}</select></div></div></div>
+ <div class="card"><h2>Reference photos</h2><div class="th" id="t_ref">${thumbs('ref')}</div></div>
+ <div class="card"><h2>Commission form</h2><textarea data-d="form" placeholder="Paste the client's commission form here.">${esc(D.form)}</textarea></div>
+ <div class="card"><h2>Finished artwork</h2><div class="th" id="t_fin">${thumbs('fin')}</div></div>
+ <div class="card"><h2>Notes</h2><textarea data-d="notes" placeholder="Internal notes">${esc(D.notes)}</textarea></div>
+ <button class="btn w" data-a="create">${ic('check')}Create commission</button>`;
+}
+
+const SEL=g=>GR.length?`<select id="mg" style="margin-bottom:12px"><option value="">No group</option>${GR.map(n=>`<option ${n===g.grp?'selected':''}>${esc(n)}</option>`).join('')}</select>`:'';
+function portfolio(){
+ if(U.grp!=='All'&&!GR.includes(U.grp))U.grp='All';
+ const list=G.map((g,i)=>[g,i]).filter(x=>U.grp==='All'||x[0].grp===U.grp);
+ const chips=['All',...GR].map(n=>`<button class="chip ${U.grp===n?'on':''}" data-a="grp" data-v="${esc(n)}">${esc(n)}</button>`).join('')+`<button class="chip" data-a="newgrp">${ic('plus')} Group</button>`;
+ return `<h1>Portfolio</h1><p class="sub">Showcase your best work for clients.</p><div class="chips">${chips}</div>
+ ${U.grp!=='All'?`<div class="acts" style="margin:-4px 0 12px"><button class="btn o s" data-a="rengrp">Rename group</button><button class="btn r s" data-a="delgrp">Delete group</button></div>`:''}
+ ${G.length?`<div class="pg"><div><button class="up" style="width:100%;height:auto;aspect-ratio:1" data-a="addphoto" data-k="port">${ic('cam')}Add photo</button></div>${list.map(x=>`<div><img src="${x[0].th||x[0].src}" alt="${esc(x[0].title)}" loading="lazy" decoding="async" data-a="view" data-id="${x[1]}"></div>`).join('')}</div>`
+ :`<div class="empty"><div class="eic">${ic('img')}</div><b>No portfolio pieces yet</b>Add your best artwork so clients can see your style.<br><button class="btn" data-a="addphoto" data-k="port">${ic('cam')}Add photos</button></div>`}`;
+}
+
+async function hash(v){const t='gfx|'+v;if(window.crypto&&crypto.subtle){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}let h=5381;for(const c of t)h=((h<<5)+h+c.charCodeAt(0))|0;return 'x'+h}
+async function chk(v){return P.pw?(await hash(v))===P.pw:v===P.pin}
+function diagText(){return 'App: GFX Workplace v2.2\nBrowser: '+navigator.userAgent+'\nCommissions: '+C.length+'\nPortfolio photos: '+G.length}
+function wipeNow(){try{localStorage.clear()}catch(e){}P=null;C=[];G=[];GR=[];X=[];PF={};D={ref:[],fin:[]};FM=defFM();unlocked=false;Object.keys(MEM).forEach(k=>delete MEM[k]);setTheme('system');go('home')}
+const COLORS=['#2563eb','#7c3aed','#db2777','#ea580c','#16a34a','#0891b2','#0f172a'];
+const defFM=()=>({title:'Commission order form',intro:'Fill this out to request a commission.',cover:'',btn:'Send order',menu:[{n:'Chibi',p:500},{n:'Half body',p:800},{n:'Full body',p:1200}],fields:[{id:'f1',l:'Your name',t:'text',r:1},{id:'f2',l:'Contact (email or handle)',t:'text',r:1},{id:'f3',l:'Commission type',t:'menu',r:1},{id:'f4',l:'Describe what you want',t:'textarea',r:1},{id:'f5',l:'Reference links',t:'text',r:0},{id:'f6',l:'Deadline',t:'date',r:0}]});
+let GR=ld('g2_groups',[]),SUPP=ld('g2_supp','support@gfxworkplace.app');
+let FM=ld('g2_form',null)||defFM(),qt,PUBK='port';
+const qs=()=>{clearTimeout(qt);qt=setTimeout(()=>sv('g2_form',FM),400)};
+let TH=ld('g2_theme','system'),unlocked=false,PINBUF='';
+function setTheme(v){TH=v;sv('g2_theme',v);document.documentElement.dataset.theme=v==='system'?'':v}
+document.documentElement.dataset.theme=TH==='system'?'':TH;
+const base=()=>location.protocol.startsWith('http')?location.origin:'https://gfxworkplace.app';
+function slug(){const v=P||PF;return ((v.handle||v.name||'studio')+'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'studio'}
+const bk=(to,t)=>`<button class="back" data-a="go" data-v="${to}">${ic('back')}${to==='profile'&&P?'Profile':'Back'}</button><h1>${t}</h1>`;
+const swatches=v=>`<div class="mu" style="margin:4px 0 10px;font-weight:600">Profile ring color</div><div class="sw">${COLORS.map(c=>`<button class="swb ${c===(v.color||COLORS[0])?'on':''}" style="--c:${c}" data-a="color" data-v="${c}" aria-label="Ring color"></button>`).join('')}</div>`;
+const avBig=v=>{const c=v.color||COLORS[0];return `<div class="avwrap"><div class="ring" style="--c:${c}"><div class="big" id="pbig">${v.avatar?`<img src="${v.avatar}" alt="">`:esc(((v.name||'G').trim()[0]||'G').toUpperCase())}</div></div><button class="badge" data-a="addphoto" data-k="avatar" aria-label="Add or change photo">${ic('cam')}</button></div>`};
+const fld=(k,l,ph,v,t)=>`<label>${l}</label><input type="${t||'text'}" data-p="${k}" placeholder="${ph}" value="${esc(v[k])}">`;
+const LR=(i,t,r,sub)=>`<div class="lr" data-a="go" data-v="${r}"><i class="lic">${ic(i)}</i><div><b>${t}</b>${sub?`<div class="mu">${sub}</div>`:''}</div><span class="chev">›</span></div>`;
+
+function welcome(){const v=PF;return `<div class="wl" style="padding-top:56px"><h1>What's your name?</h1><p class="sub">We'll use it to set up your profile. You can add a photo later.</p>
+ <label>Your name *</label><input data-p="name" placeholder="e.g. Juan Dela Cruz" value="${esc(v.name)}" autocomplete="name">
+ <label>Create a password *</label><div class="pw"><input id="pwin" type="password" data-p="password" placeholder="At least 4 characters" autocomplete="new-password" value="${esc(v.password)}"><button type="button" class="eye" data-a="eye" aria-label="Show or hide password">${ic('eye')}</button></div>
+ <p class="mu" style="text-align:left;margin:8px 0 0">This protects the app on this device. It cannot be recovered, so remember it.</p>
+ <button class="btn w" style="margin-top:20px" data-a="start">Continue</button>
+ <p class="terms">By continuing, you agree to the <a href="#terms" data-a="go" data-v="terms">Terms and Conditions</a> and <a href="#privacy" data-a="go" data-v="privacy">Privacy Policy</a>.</p>
+ <div class="rules"><b>Rules and regulations</b><ul><li>Your records stay on this device. Export your data regularly.</li><li>Only upload artwork and photos you have the right to use.</li><li>The app tracks payments for your reference. It does not collect money for you.</li><li>You are responsible for the accuracy of your records and for what you share with clients.</li></ul></div></div>`}
+
+function profile(){
+ const pl=base()+'/p/'+slug(),ol=base()+'/order/'+slug();
+ const lk=(t,u,k,x)=>`<div class="card"><b>${t}</b><div class="mu" style="margin:2px 0 12px;word-break:break-all">${u}</div><div class="acts" style="flex-wrap:wrap"><button class="btn o s" data-a="copy" data-v="${u}">${ic('copy')}Copy</button><button class="btn o s" data-a="preview" data-v="${k}">${ic('img')}Preview</button><button class="btn o s" data-a="dlpage" data-v="${k}">${ic('dl')}Download</button>${x||''}</div></div>`;
+ return `<div class="card pc">${avBig(P)}<h1 style="margin:0">${esc(P.name)}</h1><div class="mu">${esc([P.studio,P.handle].filter(Boolean).join(' · '))}</div>${P.bio?`<p>${esc(P.bio)}</p>`:'<p></p>'}<button class="btn o s" data-a="go" data-v="edit">Edit profile</button></div>
+ <div class="sec">Your links</div>${lk('Portfolio link',pl,'port')}${lk('Order form link',ol,'form',`<button class="btn s" data-a="go" data-v="formedit">${ic('gear')}Edit form</button>`)}<p class="mu" style="margin:-4px 4px 0">Your portfolio page always shows what is in your Portfolio tab. To make a link live, host the downloaded page (for example on Netlify Drop or GitHub Pages) and use that web address.</p>
+ <div class="sec">Account</div><div class="card lst">${LR('user','Edit profile','edit')}${LR('lock','Security','security','Password, export, delete data')}${LR('gear','Settings','settings','Currency and appearance')}</div>
+ <div class="sec">Legal and help</div><div class="card lst">${LR('doc','Terms and Conditions','terms')}${LR('doc','Privacy Policy','privacy')}${LR('help','Help and support','help','FAQ, contact and report a problem')}</div>
+ <p class="mu" style="text-align:center">GFX Workplace · v2.2</p>`}
+
+function edit(){const v=PF;return bk('profile','Edit profile')+`<div class="card" style="text-align:center">${avBig(v)}${v.avatar?`<button class="btn r s" style="margin-bottom:10px" data-a="rmav">${ic('x')}Remove photo</button>`:''}${swatches(v)}<div style="text-align:left">${fld('name','Full name *','Your name',v)}${fld('studio','Studio or brand name','e.g. Pixel Nook',v)}${fld('handle','Handle','@yourhandle',v)}${fld('email','Email','you@example.com',v,'email')}<label>Bio</label><textarea data-p="bio" placeholder="What do you design? Commission rules, turnaround, style.">${esc(v.bio)}</textarea></div></div><button class="btn w" data-a="saveprof">${ic('check')}Save changes</button>`}
+
+function security(){return bk('profile','Security')+`<div class="card"><h2>App password</h2><p class="mu" style="margin:0 0 12px">The app asks for your password every time it opens. It is stored on this device only and cannot be recovered.</p><div class="acts"><button class="btn o" data-a="changepw">${(P.pw||P.pin)?'Change password':'Set password'}</button><button class="btn" data-a="locknow">${ic('lock')}Lock now</button></div></div>
+ <div class="card"><h2>Your data</h2><p class="mu" style="margin:0 0 12px">Everything is stored on this device only.</p><button class="btn o w" data-a="export">${ic('dl')}Export my data</button><button class="btn r w" style="margin-top:10px" data-a="reset">${ic('trash')}Delete all my data</button></div>`}
+
+function settings(){return bk('profile','Settings')+`<div class="card"><h2>Preferences</h2><label style="margin-top:0">Currency</label><select data-set="cur">${Object.keys(SYM).map(c=>`<option ${c===cur()?'selected':''}>${c}</option>`).join('')}</select><label>Appearance</label><select data-set="theme">${[['system','System'],['light','Light'],['dark','Dark']].map(o=>`<option value="${o[0]}" ${o[0]===TH?'selected':''}>${o[1]}</option>`).join('')}</select></div>
+ <div class="card"><h2>Support</h2><label style="margin-top:0">Support email</label><input data-set="support" type="email" value="${esc(SUPP)}" placeholder="support@yourdomain.com"><p class="mu" style="margin:8px 0 0">Shown in Help and support so clients can reach you.</p></div>`}
+
+const FAQ=[['How do I add a commission?','Tap the + button at the bottom, choose New commission, fill in the client details and tap Create commission. It appears in your Queue, sorted by deadline.'],['How do I track payments?','In the Queue, tap Mark paid when a client has paid in full, or enter the Amount paid on the commission form. Payments count as revenue on Home.'],['How do I add income or spending?','Open Home and tap Add income or Add spending. Enter the amount and a short note. Revenue, Spending and Profit update right away, and you can delete an entry from Recent entries.'],['How do I add photos?','Tap Add photo in Portfolio, in your profile, or in the order form editor. Choose Take photo or Choose from gallery. If nothing opens, use the app in a normal browser such as Chrome and allow access to your camera and photos.'],['What are portfolio groups?','Groups organize your artwork, for example Logos or Chibi. In Portfolio tap + Group, then add photos while that group is selected, or open a photo to move it to a group.'],['How do I share my portfolio or order form?','In Profile, tap Download on the Portfolio link or the Order form link, then upload that file to a free host such as Netlify Drop or GitHub Pages and use the web address you get. Download again after you change your portfolio or form.'],['How do I edit my order form?','Go to Profile, then Edit form under Order form link. Change the cover picture, title, menu items and questions, then tap Preview form.'],['I forgot my password.','Passwords cannot be recovered because everything is stored on this device only. On the lock screen tap Forgot password to erase the app data and start over. Export your data regularly in Security.'],['Where is my data stored?','On this device, in this browser only. Clearing browser data or switching browsers removes it, so use Export my data in Security to keep a backup.']];
+function help(){
+ const mail='mailto:'+SUPP+'?subject='+encodeURIComponent('GFX Workplace support');
+ return bk('profile','Help and support')+`<div class="card lst"><a class="lr" href="${esc(mail)}"><i class="lic">${ic('mail')}</i><div><b>Email support</b><div class="mu">${esc(SUPP)}</div></div><span class="chev">›</span></a>
+ <div class="lr" data-a="copy" data-v="${esc(SUPP)}"><i class="lic">${ic('copy')}</i><div><b>Copy support email</b></div></div>
+ <div class="lr" data-a="report"><i class="lic">${ic('help')}</i><div><b>Report a problem</b><div class="mu">Email with your app details</div></div><span class="chev">›</span></div>
+ <div class="lr" data-a="diag"><i class="lic">${ic('doc')}</i><div><b>Copy app details</b><div class="mu">Version and browser, to paste into a message</div></div></div></div>
+ <div class="sec">Frequently asked</div><div class="card" style="padding:4px 16px">${FAQ.map(q=>`<details><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join('')}</div>
+ <div class="sec">More</div><div class="card lst">${LR('lock','Security','security')}${LR('gear','Settings','settings')}${LR('doc','Terms and Conditions','terms')}${LR('doc','Privacy Policy','privacy')}</div>`}
+
+const DOC=(t,items)=>bk('profile',t)+`<div class="card doc"><p><i>Template text. Have it reviewed before you publish or sell the app.</i></p>${items.map(i=>`<h2>${i[0]}</h2><p>${i[1]}</p>`).join('')}</div>`;
+const terms=()=>DOC('Terms and Conditions',[['1. Using the app','GFX Workplace helps you track commissions, clients, payments and portfolio work. You are responsible for the accuracy of the information you enter.'],['2. Your content','You own the artwork and photos you add. You confirm you have the right to use and show them.'],['3. Payments','The app records prices and payments for your reference only. It does not process payments or guarantee that a client will pay.'],['4. Availability','The app is provided as is. Features may change, and we are not liable for lost data, so export your data regularly.'],['5. Changes','These terms may be updated. Continued use means you accept the updated terms.'],['6. Contact','Questions? Email support@gfxworkplace.app.']]);
+const privacy=()=>DOC('Privacy Policy',[['What we store','Your profile, commissions, expenses and photos are saved on your own device.'],['Sharing','We do not sell your data. Information is shared only when you copy or send your links.'],['Your control','You can export your data or delete all of it at any time in Security.'],['Contact','Privacy questions: support@gfxworkplace.app.']]);
+
+function lock(){return `<div class="wl" style="padding-top:56px"><h1>Welcome back${P.name?', '+esc(P.name.split(' ')[0]):''}</h1><p class="sub">Enter your password to unlock.</p><div class="pw"><input id="lpw" type="password" placeholder="Password" autocomplete="current-password"><button type="button" class="eye" data-a="eye" aria-label="Show or hide password">${ic('eye')}</button></div><button class="btn w" style="margin-top:16px" data-a="unlock">Unlock</button><button class="back" style="margin:18px auto 0" data-a="forgot">Forgot password?</button></div>`}
+
+function formedit(){return bk('profile','Edit order form')+`
+ <div class="card"><h2>Cover picture</h2>${FM.cover?`<img src="${FM.cover}" style="width:100%;border-radius:12px;max-height:180px;object-fit:cover;margin-bottom:10px" alt="">`:''}<div class="acts"><button class="btn o" data-a="addphoto" data-k="cover">${ic('cam')}${FM.cover?'Change picture':'Add picture'}</button>${FM.cover?`<button class="btn r s" data-a="rmcover" aria-label="Remove picture">${ic('x')}</button>`:''}</div></div>
+ <div class="card"><h2>Form details</h2><label style="margin-top:0">Title</label><input data-fm="title" value="${esc(FM.title)}"><label>Intro</label><textarea data-fm="intro">${esc(FM.intro)}</textarea><label>Button text</label><input data-fm="btn" value="${esc(FM.btn)}"></div>
+ <div class="card"><h2>Commission menu</h2>${FM.menu.map((m,i)=>`<div class="mrow"><input data-mi="${i}" data-mk="n" value="${esc(m.n)}" placeholder="Name"><input data-mi="${i}" data-mk="p" type="number" inputmode="decimal" value="${esc(m.p)}" placeholder="Price"><button class="btn r s" data-a="rmmenu" data-i="${i}" aria-label="Remove">${ic('x')}</button></div>`).join('')}<button class="btn o w" data-a="addmenu">${ic('plus')}Add menu item</button></div>
+ <div class="card"><h2>Questions</h2>${FM.fields.map((f,i)=>`<div class="qrow"><input data-fi="${i}" data-fk="l" value="${esc(f.l)}" placeholder="Question"><div class="g2"><select data-fi="${i}" data-fk="t">${[['text','Short answer'],['textarea','Long answer'],['menu','Pick from menu'],['select','Custom choices'],['number','Number'],['date','Date']].map(o=>`<option value="${o[0]}" ${o[0]===f.t?'selected':''}>${o[1]}</option>`).join('')}</select><label class="chk"><input type="checkbox" data-fi="${i}" data-fk="r" ${f.r?'checked':''}>Required</label></div>${f.t==='select'?`<input data-fi="${i}" data-fk="o" value="${esc(f.o)}" placeholder="Choices, separated by commas">`:''}<div class="acts"><button class="btn o s" data-a="mvq" data-i="${i}" data-d="-1" aria-label="Move up">↑</button><button class="btn o s" data-a="mvq" data-i="${i}" data-d="1" aria-label="Move down">↓</button><button class="btn r s" data-a="rmq" data-i="${i}" aria-label="Remove">${ic('trash')}</button></div></div>`).join('')}<button class="btn o w" data-a="addq">${ic('plus')}Add question</button></div>
+ <button class="btn w" data-a="preview" data-v="form">${ic('img')}Preview form</button>`}
+
+function pub(){return bk('profile',PUBK==='form'?'Order form preview':'Portfolio preview')+`<iframe class="pv" title="Preview" srcdoc="${esc(pageHTML(PUBK))}"></iframe>`}
+
+function pageHTML(kind){
+ const o=P||{},nm=esc(o.studio||o.name||'Studio'),col=o.color||COLORS[0],T=kind==='form'?(FM.title||'Order form'):'Portfolio';
+ const css=`*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#f8fafc;color:#0f172a}main{max-width:640px;margin:0 auto;padding:20px 16px 48px}header{display:flex;gap:14px;align-items:center;margin-bottom:14px}.av{width:64px;height:64px;border-radius:50%;object-fit:cover;color:#fff;display:grid;place-items:center;font-weight:800;font-size:26px;flex:none}h1{font-size:22px;margin:0}h2{font-size:18px;margin:24px 0 10px}h3{font-size:16px;margin:18px 0 8px}p{margin:0 0 10px;color:#475569}.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:16px;margin-bottom:14px}.cover{width:100%;max-height:220px;object-fit:cover;border-radius:16px;margin-bottom:14px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}figure{margin:0}figure img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;display:block}figcaption{font-size:13px;color:#475569;margin-top:4px}.menu{display:grid;gap:8px}.menu div{display:flex;justify-content:space-between;border:1px solid #e2e8f0;border-radius:12px;padding:10px 14px;background:#fff}label{display:block;font-weight:600;font-size:14px;margin:12px 0 0}input,select,textarea{display:block;width:100%;margin-top:6px;border:1.5px solid #e2e8f0;border-radius:12px;padding:11px 13px;font:inherit;background:#fff}button{margin-top:18px;width:100%;border:0;border-radius:12px;padding:14px;background:var(--c);color:#fff;font:inherit;font-weight:700}`;
+ const head=`<header>${o.avatar?`<img class="av" src="${o.avatar}" alt="">`:`<div class="av" style="background:${col}">${esc(((o.name||'G').trim()[0]||'G').toUpperCase())}</div>`}<div><h1>${nm}</h1><p style="margin:0">${esc([o.name&&o.studio?o.name:'',o.handle].filter(Boolean).join(' · '))}</p></div></header>${o.bio?`<p>${esc(o.bio)}</p>`:''}`;
+ const grid=a=>`<div class="grid">${a.map(g=>`<figure><img src="${g.src}" alt="${esc(g.title)}">${g.title?`<figcaption>${esc(g.title)}</figcaption>`:''}</figure>`).join('')}</div>`;
+ const oth=G.filter(g=>!g.grp||!GR.includes(g.grp));
+ const art=!G.length?'<p>No artwork yet.</p>':GR.length?GR.filter(n=>G.some(g=>g.grp===n)).map(n=>`<h3>${esc(n)}</h3>${grid(G.filter(g=>g.grp===n))}`).join('')+(oth.length?`<h3>Other work</h3>${grid(oth)}`:''):grid(G);
+ let body,js='';
+ if(kind==='form'){
+  const q=f=>{const l=esc(f.l),a=`data-q="${l}"${f.r?' required':''}`,L=`<label>${l}${f.r?' *':''}`;
+   if(f.t==='textarea')return `${L}<textarea ${a} rows="4"></textarea></label>`;
+   if(f.t==='menu')return `${L}<select ${a}><option value="">Choose…</option>${FM.menu.map(m=>`<option>${esc(m.n)} (${$$(m.p)})</option>`).join('')}</select></label>`;
+   if(f.t==='select')return `${L}<select ${a}><option value="">Choose…</option>${String(f.o||'').split(',').map(x=>x.trim()).filter(Boolean).map(x=>`<option>${esc(x)}</option>`).join('')}</select></label>`;
+   return `${L}<input type="${f.t==='number'?'number':f.t==='date'?'date':'text'}" ${a}></label>`};
+  body=(FM.cover?`<img class="cover" src="${FM.cover}" alt="">`:'')+head+`<h2>${esc(FM.title)}</h2><p>${esc(FM.intro)}</p>`+(FM.menu.length?`<h2>Commission menu</h2><div class="menu">${FM.menu.map(m=>`<div><b>${esc(m.n)}</b><span>${$$(m.p)}</span></div>`).join('')}</div>`:'')+`<h2>Your details</h2><form id="f" class="card">${FM.fields.map(q).join('')}<button type="submit">${esc(FM.btn||'Send order')}</button></form>`+(G.length?`<h2>My work</h2>${art}`:'');
+  const em=JSON.stringify(o.email||'').replace(/</g,'\\u003c'),tt=JSON.stringify(FM.title||'Order').replace(/</g,'\\u003c');
+  js=`var E=${em},T=${tt};document.getElementById('f').addEventListener('submit',function(ev){ev.preventDefault();var L=[];document.querySelectorAll('[data-q]').forEach(function(e){L.push(e.getAttribute('data-q')+': '+e.value.trim())});var b=L.join(String.fromCharCode(10));if(E){location.href='mailto:'+E+'?subject='+encodeURIComponent(T)+'&body='+encodeURIComponent(b)}else if(navigator.share){navigator.share({title:T,text:b}).catch(function(){})}else{if(navigator.clipboard)navigator.clipboard.writeText(b);alert('Order details copied. Send them to the artist.')}});`;
+ }else body=head+`<h2>Portfolio</h2>${art}`;
+ return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(T)+' · '+nm+'</title><style>'+css+'</style></head><body style="--c:'+col+'"><main>'+body+'</main>'+(js?'<script>'+js+'<\/script>':'')+'</body></html>'}
+
+const V={help,formedit,pub,home,queue,new:newc,portfolio,profile,edit,security,settings,terms,privacy,welcome,lock};
+const SUB={help:1,formedit:1,pub:1,edit:1,security:1,settings:1,terms:1,privacy:1};
+let R=(location.hash||'#home').slice(1);function route(){return R}
+function render(){
+ let r=route();
+ if(!P){if(r!=='terms'&&r!=='privacy')r='welcome'}else if((P.pw||P.pin)&&!unlocked)r='lock';else if(!V[r]||r==='welcome'||r==='lock')r='home';
+ document.body.classList.toggle('bare',r==='welcome'||r==='lock'||!P);
+ if(r==='edit'&&!PF._init)PF=Object.assign({_init:1},P);
+ $('#v').innerHTML=V[r]();
+ document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.t===(r==='new'?'queue':SUB[r]?'profile':r)));
+}
+const go=h=>{R=h;if(h!=='edit'&&P)PF={};try{history.replaceState(null,'','#'+h)}catch(e){}scrollTo(0,0);render()};
+addEventListener('hashchange',()=>{R=(location.hash||'#home').slice(1);render()});
+
+function pickFiles(multi,cam){return new Promise(ok=>{document.querySelectorAll('.tmpf').forEach(x=>x.remove());const i=document.createElement('input');i.type='file';i.accept='image/*';i.className='tmpf';if(multi)i.multiple=true;if(cam)i.setAttribute('capture','environment');i.style.cssText='position:fixed;left:-9999px;top:0;opacity:0';document.body.appendChild(i);i.onchange=()=>{ok([...i.files]);i.remove()};i.click()})}
+function photoSheet(k){const multi=k!=='avatar',m=document.createElement('div');m.className='mb bt';
+ m.innerHTML='<div class="md sh"><p>Add photo</p>'+'<label class="opt"><input class="ovl" type="file" accept="image/*" capture="environment">'+ic('cam')+'Take photo</label><label class="opt"><input class="ovl" type="file" accept="image/*"'+(multi?' multiple':'')+'>'+ic('img')+'Choose from gallery</label><button class="btn o w" data-s="x">Cancel</button></div>';
+ m.querySelectorAll('input').forEach(i=>{i.onchange=()=>{const fs=[...i.files];m.remove();if(fs.length)handle(k,fs)}});
+ m.onclick=e=>{if(e.target===m||e.target.closest('[data-s="x"]'))m.remove()};
+ document.body.appendChild(m)}
+async function handle(k,fs){toast('Adding '+fs.length+' photo'+(fs.length>1?'s':'')+'…');
+ if(k==='cover'){try{FM.cover=await shrink(fs[0],1000,.75);sv('g2_form',FM);toast('Picture added.');render()}catch(e){toast('Could not read that photo. Try a JPG or PNG.')}return}
+ if(k==='avatar'){try{const img=await loadImg(fs[0]),S=Math.min(img.width,img.height),c=document.createElement('canvas');c.width=c.height=480;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,480,480);x.drawImage(img,(img.width-S)/2,(img.height-S)/2,S,S,0,0,480,480);const u=c.toDataURL('image/jpeg',.8);if(P&&route()!=='edit'){P.avatar=u;sv('g2_profile',P)}else PF.avatar=u;toast('Photo updated.');render()}catch(e){toast('Could not read that photo. Try a JPG or PNG.')}return}
+ let n=0;for(const f of fs){try{const src=await shrink(f,k==='port'?1280:900,.75);if(k==='port'){G.push({src,th:await shrink(f,360,.7),title:'',grp:U.grp!=='All'?U.grp:''})}else D[k].push({src,th:src});n++}catch(e){}}
+ if(!n){toast('Could not read that photo. Try a JPG or PNG.');return}
+ if(k==='port'){sv('g2_port',G);render()}else{const w=$('#t_'+k);if(w)w.innerHTML=thumbs(k)}
+ toast(n+' photo'+(n>1?'s':'')+' added.')}
+function copyText(t){let ok=false;const e=document.createElement('textarea');e.value=t;e.style.cssText='position:fixed;opacity:0';document.body.appendChild(e);e.select();try{ok=document.execCommand('copy')}catch(x){}e.remove();if(!ok&&navigator.clipboard)navigator.clipboard.writeText(t).catch(()=>{});toast('Copied.')}
+function askMoney(type){modal('<p>'+(type==='in'?'Add income':'Add spending')+' ('+cur()+')</p><input id="mv" type="number" inputmode="decimal" step="0.01" placeholder="Amount"><input id="mn" type="text" maxlength="60" placeholder="'+(type==='in'?'Note (e.g. tip, sticker sales)':'Note (e.g. brushes, subscription)')+'" style="margin-top:10px"><div class="acts" style="margin-top:12px"><button class="btn o" data-m="x">Cancel</button><button class="btn" data-m="y">Add</button></div>',(v,g,n)=>{if(num(v)>0){X.push({id:Date.now()+'',at:Date.now(),amt:num(v),type,note:(n||'').trim()});sv('g2_exp',X);render()}else toast('Enter an amount above zero.')})}
+const A={
+ go:t=>go(t.dataset.v),prof:()=>go('profile'),new:()=>go('new'),queue:()=>go('queue'),addphoto:t=>photoSheet(t.dataset.k),
+ rmav:()=>{delete PF.avatar;render()},
+ rmd:t=>{const k=t.dataset.k;D[k].splice(+t.dataset.i,1);const w=$('#t_'+k);if(w)w.innerHTML=thumbs(k)},
+ view:t=>{const i=+t.dataset.id,g=G[i];if(!g)return;modal('<img src="'+g.src+'" alt="" style="width:100%;max-height:50vh;object-fit:contain;border-radius:12px;margin-bottom:12px"><input id="mv" type="text" maxlength="60" placeholder="Add a title" value="'+esc(g.title)+'" style="margin-bottom:12px">'+SEL(g)+'<div class="acts"><button class="btn r" data-m="d" aria-label="Remove">'+ic('trash')+'</button><button class="btn o" data-m="x">Close</button><button class="btn" data-m="y">Save</button></div>',(v,gv)=>{g.title=v;if(gv!==undefined)g.grp=gv;sv('g2_port',G);render()},()=>ask('Remove this photo from your portfolio?',()=>{G.splice(i,1);sv('g2_port',G);render()},'Remove'))},
+ range:t=>{U.range=t.dataset.v;render()},
+ filter:t=>{U.filter=t.dataset.v;render()},
+ paid:t=>{const c=C.find(x=>x.id===t.dataset.id);c.paid=c.price;sv('g2_com',C);render()},
+ del:t=>ask('Delete this commission?',()=>{C=C.filter(c=>c.id!==t.dataset.id);sv('g2_com',C);render()}),
+ addin:()=>askMoney('in'),addout:()=>askMoney('out'),
+ delx:t=>ask('Delete this entry?',()=>{X.splice(+t.dataset.i,1);sv('g2_exp',X);render()}),
+ create:()=>{if(!(D.name||'').trim()){toast('Client name is required.');return}
+  C.push({id:Date.now()+'',at:Date.now(),name:D.name.trim(),contact:D.contact,type:D.type,price:D.price,paid:D.paid,deadline:D.deadline,status:D.status||'Pending',form:D.form,notes:D.notes,ref:D.ref,fin:D.fin});
+  sv('g2_com',C);D={ref:[],fin:[]};toast('Commission created.');go('queue')},
+ color:t=>{PF.color=t.dataset.v;render()},
+ start:async()=>{const n=(PF.name||'').trim(),pw=PF.password||'';if(!n){toast('Please enter your name.');return}if(pw.length<4){toast('Create a password with at least 4 characters.');return}
+  const o=Object.assign({},PF);delete o._init;delete o.password;o.name=n;o.pw=await hash(pw);o.cur='PHP';o.color=o.color||COLORS[0];sv('g2_profile',o);P=o;PF={};unlocked=true;toast('Welcome, '+n.split(' ')[0]+'!');go('home')},
+ eye:t=>{const i=t.parentElement.querySelector('input');i.type=i.type==='password'?'text':'password'},
+ unlock:async()=>{const e=$('#lpw'),v=e?e.value:'';if(!v){toast('Enter your password.');return}if(await chk(v)){unlocked=true;go('home')}else{toast('Wrong password. Try again.');if(e){e.value='';e.focus()}}},
+ forgot:()=>ask('Forgot your password? The only way in is to erase all app data on this device and start over.',()=>wipeNow(),'Erase and start over'),
+ locknow:()=>{unlocked=false;render()},
+ changepw:()=>{const has=!!(P.pw||P.pin);modal('<p>'+(has?'Change password':'Set a password')+'</p>'+(has?'<input id="mv" type="password" placeholder="Current password" autocomplete="current-password" style="margin-bottom:10px">':'')+'<input id="mn" type="password" placeholder="New password (at least 4 characters)" autocomplete="new-password"><div class="acts" style="margin-top:12px"><button class="btn o" data-m="x">Cancel</button><button class="btn" data-m="y">Save</button></div>',async(v,g,n)=>{if(has&&!(await chk(v))){toast('Current password is wrong.');return}if((n||'').length<4){toast('Use at least 4 characters.');return}P.pw=await hash(n);delete P.pin;sv('g2_profile',P);toast('Password saved.');render()})},
+ report:()=>{location.href='mailto:'+SUPP+'?subject='+encodeURIComponent('GFX Workplace problem report')+'&body='+encodeURIComponent('Describe the problem here:\n\n\n---\n'+diagText())},
+ diag:()=>copyText(diagText()),
+ saveprof:()=>{const n=(PF.name||'').trim();if(!n){toast('Please enter your name.');return}
+  const o=Object.assign({},P,PF);delete o._init;o.name=n;sv('g2_profile',o);P=o;PF={};toast('Profile saved.');go('profile')},
+ copy:t=>copyText(t.dataset.v),
+ export:()=>{const d=JSON.stringify({profile:Object.assign({},P,{pin:undefined,pw:undefined,avatar:undefined}),commissions:C,expenses:X,portfolioTitles:G.map(g=>g.title)},null,1);const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([d],{type:'application/json'}));a.download='gfx-workplace-data.json';document.body.appendChild(a);a.click();a.remove();toast('Data exported.')},
+ reset:()=>ask('Delete your profile, commissions and portfolio from this device? This cannot be undone.',()=>{try{localStorage.clear()}catch(e){}P=null;C=[];G=[];GR=[];X=[];PF={};U.grp='All';D={ref:[],fin:[]};FM=defFM();unlocked=false;Object.keys(MEM).forEach(k=>delete MEM[k]);setTheme('system');go('home')},'Delete everything'),
+ preview:t=>{PUBK=t.dataset.v;go('pub')},
+ dlpage:t=>{const k=t.dataset.v,a=document.createElement('a');a.href=URL.createObjectURL(new Blob([pageHTML(k)],{type:'text/html'}));a.download=slug()+(k==='form'?'-order-form.html':'-portfolio.html');document.body.appendChild(a);a.click();a.remove();toast('Page downloaded.')},
+ rmcover:()=>{FM.cover='';sv('g2_form',FM);render()},
+ addmenu:()=>{FM.menu.push({n:'',p:''});sv('g2_form',FM);render()},
+ rmmenu:t=>{FM.menu.splice(+t.dataset.i,1);sv('g2_form',FM);render()},
+ addq:()=>{FM.fields.push({id:Date.now()+'',l:'New question',t:'text',r:0});sv('g2_form',FM);render()},
+ rmq:t=>{FM.fields.splice(+t.dataset.i,1);sv('g2_form',FM);render()},
+ mvq:t=>{const i=+t.dataset.i,j=i+(+t.dataset.d);if(j<0||j>=FM.fields.length)return;const f=FM.fields;[f[i],f[j]]=[f[j],f[i]];sv('g2_form',FM);render()},
+ grp:t=>{U.grp=t.dataset.v;render()},
+ newgrp:()=>modal('<p>New group name</p><input id="mv" type="text" maxlength="30" placeholder="e.g. Logos, Chibi, Banners"><div class="acts" style="margin-top:12px"><button class="btn o" data-m="x">Cancel</button><button class="btn" data-m="y">Create</button></div>',v=>{v=v.trim();if(!v)return;if(!GR.includes(v)){GR.push(v);sv('g2_groups',GR)}U.grp=v;render()}),
+ rengrp:()=>modal('<p>Rename group</p><input id="mv" type="text" maxlength="30" value="'+esc(U.grp)+'"><div class="acts" style="margin-top:12px"><button class="btn o" data-m="x">Cancel</button><button class="btn" data-m="y">Save</button></div>',v=>{v=v.trim();const o=U.grp;if(!v||GR.includes(v))return;GR[GR.indexOf(o)]=v;G.forEach(g=>{if(g.grp===o)g.grp=v});sv('g2_groups',GR);sv('g2_port',G);U.grp=v;render()}),
+ delgrp:()=>ask('Delete the group "'+U.grp+'"? The photos stay in your portfolio.',()=>{const o=U.grp;GR=GR.filter(n=>n!==o);G.forEach(g=>{if(g.grp===o)g.grp=''});sv('g2_groups',GR);sv('g2_port',G);U.grp='All';render()},'Delete group'),
+ fab:()=>{const m=document.createElement('div');m.className='mb bt';m.innerHTML='<div class="md sh"><p>Add</p><button class="opt" data-s="c">'+ic('list')+'New commission</button><button class="opt" data-s="p">'+ic('img')+'Add photos to portfolio</button><button class="opt" data-s="g">'+ic('plus')+'New portfolio group</button><button class="btn o w" data-s="x">Cancel</button></div>';m.onclick=e=>{const b=e.target.closest('[data-s]');if(!b&&e.target!==m)return;const w=b&&b.dataset.s;m.remove();if(w==='c')go('new');else if(w==='p'){go('portfolio');photoSheet('port')}else if(w==='g'){go('portfolio');A.newgrp()}};document.body.appendChild(m)}
+};
+document.addEventListener('click',e=>{const t=e.target.closest('[data-a]');if(t&&t.tagName!=='SELECT'&&A[t.dataset.a]){if(t.tagName==='A')e.preventDefault();A[t.dataset.a](t)}});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.fm){FM[t.dataset.fm]=t.value;qs()}else if(t.dataset.mi!==undefined){FM.menu[+t.dataset.mi][t.dataset.mk]=t.value;qs()}else if(t.dataset.fi!==undefined&&t.type!=='checkbox'&&t.tagName!=='SELECT'){FM.fields[+t.dataset.fi][t.dataset.fk]=t.value;qs()}else if(t.dataset.d)D[t.dataset.d]=t.value;else if(t.dataset.p){PF[t.dataset.p]=t.value;if(t.dataset.p==='name'){const b=$('#pbig');if(b&&!PF.avatar)b.textContent=(t.value.trim()[0]||'G').toUpperCase()}}});
+document.addEventListener('change',async e=>{const t=e.target;
+ if(t.dataset.fi!==undefined&&(t.type==='checkbox'||t.tagName==='SELECT')){const f=FM.fields[+t.dataset.fi];f[t.dataset.fk]=t.type==='checkbox'?(t.checked?1:0):t.value;sv('g2_form',FM);if(t.dataset.fk==='t')render();return}
+ if(t.dataset.set){if(t.dataset.set==='support'){SUPP=(t.value||'').trim()||'support@gfxworkplace.app';sv('g2_supp',SUPP);toast('Support email saved.');return}if(t.dataset.set==='cur'){P.cur=t.value;sv('g2_profile',P)}else setTheme(t.value);render();return}
+ if(t.dataset.a==='status'){const c=C.find(x=>x.id===t.dataset.id);c.status=t.value;sv('g2_com',C);render();return}
+ if(t.dataset.r){U[t.dataset.r]=t.value;render();return}
+ if(t.dataset.d)D[t.dataset.d]=t.value;
+ if(t.dataset.p)PF[t.dataset.p]=t.value;
+ const k=t.dataset.up;if(!k)return;
+ for(const f of [...t.files]){try{const s=await shrink(f);if(k==='avatar')PF.avatar=s;else if(k==='port'){G.push(s)}else D[k].push(s)}catch(x){toast('Could not read that photo. Try a JPG or PNG.')}}
+ t.value='';
+ if(k==='port'){sv('g2_port',G);render()}
+ else if(k==='avatar'){const b=$('#pbig');if(b)b.innerHTML=`<img src="${PF.avatar}" alt="">`}
+ else{const w=$('#t_'+k);if(w)w.innerHTML=thumbs(k)}
+});
+addEventListener('error',e=>toast('Error: '+e.message));
+document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;const t=e.target;if(t.id==='lpw')A.unlock();else if(t.dataset&&(t.dataset.p==='password'||(t.dataset.p==='name'&&!P)))A.start()});
+render();
+</script>
+</body>
+</html>
